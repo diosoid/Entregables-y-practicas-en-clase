@@ -50,9 +50,6 @@ class ProductManager {
             return getProdByID;
         }
         return  console.log ("Product not found");
-
-
-
         // if (id) {
         //     return this.products.find(product => product.id === id);                   
         // }
@@ -74,6 +71,8 @@ console.log(productManager.getProduct());
 // Busqueda por ID
 console.log('El producto buscado es:')
 console.log(productManager.getProductByid(2));
+
+// Busqueda por ID fallida
 console.log(productManager.getProductByid(6));
 
 
