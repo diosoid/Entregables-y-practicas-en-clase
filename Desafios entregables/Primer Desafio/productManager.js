@@ -41,11 +41,22 @@ class ProductManager {
         return this.products;   
     }
 
+    
     getProductByid (id) {
-        if (id) {
-            return this.products.find(product => product.id === id);                   
+
+        const  getProdByID = this.products.find((e) => e.id === id);
+
+        if (getProdByID) {
+            return getProdByID;
         }
-        return console.log("Product not found")
+        return  console.log ("Product not found");
+
+
+
+        // if (id) {
+        //     return this.products.find(product => product.id === id);                   
+        // }
+        // return console.log("Product not found")
     };
 }
 
