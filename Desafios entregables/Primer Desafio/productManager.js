@@ -25,8 +25,6 @@ class ProductManager {
         }
         this.products.push(product);
         
-        
-
     }     
 
     #getMaxid(){
@@ -73,7 +71,7 @@ console.log('El producto buscado es:')
 console.log(productManager.getProductByid(2));
 
 // Busqueda por ID fallida
-console.log(productManager.getProductByid(6));
+productManager.getProductByid(6)
 
 
 
