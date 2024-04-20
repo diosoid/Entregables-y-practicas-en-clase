@@ -22,29 +22,29 @@ class ProductManager {
     }
     
 
-    async addProduct (prod) {
+    async addProduct (title , description ,price ,thumbnail , code ,stock ) {//Aca iba prod 
         try {
             const products = await this.getProducts()
-            products.push(prod)
+            products.push(title , description ,price ,thumbnail , code ,stock) // Aca tmb iba prod
             await fs.promises.writeFile(this.path, JSON.stringify(products), 'utf8');
 
-            // if (!title || !description || !price || !thumbnail || !code || !stock){
-            //     return console.log('Todos los campos son obligatorios')
-            // }
-            // const checkCode = this.products.find((e) => e.code === code);
-            // if (checkCode) {
-            // return  console.log ("El articulo ya fue ingresado, por favor ingrese un producto diferente");
-            // }
-            // const product = {
-            //     id: this.#getMaxid() + 1 ,
-            //     title,
-            //     description,
-            //     price,
-            //     thumbnail,
-            //     code,
-            //     stock
-            // }
-            // this.products.push(product);       
+            if (!title || !description || !price || !thumbnail || !code || !stock){
+                return console.log('Todos los campos son obligatorios')
+            }
+            const checkCode = await this.products.find((e) => e.code === code);
+            if (checkCode) {
+            return  console.log ("El articulo ya fue ingresado, por favor ingrese un producto diferente");
+            }
+            const product = {
+                id: this.#getMaxid() + 1 ,
+                title,
+                description,
+                price,
+                thumbnail,
+                code,
+                stock
+            }
+            this.products.push(product);       
             
         } catch (error) {
             console.log(error)
@@ -55,13 +55,13 @@ class ProductManager {
 
     // METODOS ANTERIORES
 
-    // #getMaxid(){
-    //     let maxId = 0;
-    //     this.products.map((product) => { 
-    //     if (product.id > maxId) maxId = product.id;
-    //     });
-    //     return maxId;
-    // }
+    #getMaxid(){
+        let maxId = 0;
+        this.products.map((product) => { 
+        if (product.id > maxId) maxId = product.id;
+        });
+        return maxId;
+    }
         
 
     
@@ -99,8 +99,10 @@ const prod2 = {
 
 const test = async() => {
     console.log(await productManager.getProducts())
-    await productManager.addProduct(prod1)
-    await productManager.addProduct(prod2)
+    // await productManager.addProduct(prod1)
+    // await productManager.addProduct(prod2)
+    await productManager.addProduct('Sprite', 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 )
+    await productManager.addProduct('Fanta', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
     console.log(await productManager.getProducts())
 }
 
@@ -111,8 +113,6 @@ test()
 
 
 // PRUBAS DEL MODELO ANTERIOR //
-// productManager.addProduct('Sprite', 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 )
-// productManager.addProduct('Fanta', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
 // productManager.addProduct('Fanta', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 ) // CODIGO REPETIDO
 // productManager.addProduct( 'Sin Azucar', 3000, "https://coca-colaentucasa.com/wp-content/uploads/2023/06/2891-COCA-COLA-ZERO-PET-500-ml-PACK-x6-2.jpg", 3, 20 ) //CAMPO INCOMPLETO
 
