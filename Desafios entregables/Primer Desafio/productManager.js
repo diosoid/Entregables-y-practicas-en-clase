@@ -94,6 +94,16 @@ class ProductManager {
             return updateProduct;
          }
     }
+
+    async deleteProduct (id) {
+        const deleteProduct = await this.getProductByid(id)
+        if (deleteProduct) {
+            this.products = this.products.filter((e) => e.id!== id);
+            await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8');
+            return deleteProduct;
+        }
+        return console.log("Product not found");
+    }
 }
 
 const productManager = new ProductManager('./products.json');
@@ -124,7 +134,7 @@ const productManager = new ProductManager('./products.json');
 
 const test = async() => {
     console.log(await productManager.getProducts())
-       
+
     await productManager.addProduct('Sprite', 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 )
 
     await productManager.addProduct('Sprite', 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 ) //Codigo Duplicado
@@ -133,7 +143,13 @@ const test = async() => {
 
     await productManager.addProduct('Fanta', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
 
+    await productManager.addProduct('Prity', 'Limon', 8500, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",13 , 1234 )
+
     await productManager.updateProduct(2, 'Roman Riquelme', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
+
+    console.log (await productManager.deleteProduct(3))
+
+
     console.log(await productManager.getProducts())
 
     console.log(await productManager.getProductByid(2));
