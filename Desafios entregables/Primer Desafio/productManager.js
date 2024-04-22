@@ -108,25 +108,7 @@ class ProductManager {
 
 const productManager = new ProductManager('./products.json');
 
-//Prueba basada en la clase
 
-// const prod1 = {
-//     title: 'Sprite',
-//     description: 'Original',
-//     price: 2800,
-//     thumbnail:"https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
-//     code:1,
-//     stock:30
-// }
-
-// const prod2 = {
-//     title: 'Fanta',
-//     description: 'Edicion Loolapaloza',
-//     price: 3400,
-//     thumbnail:"https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
-//     code:2,
-//     stock:50
-// }
 
 
 //Area DE pruebas
