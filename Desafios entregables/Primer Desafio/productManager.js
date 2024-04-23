@@ -28,10 +28,12 @@ class ProductManager {
             await this.getProducts()
             const checkCode = await this.products.find((e) => e.code === code);
             if (checkCode) {
-            return  console.log ("El articulo ya fue ingresado, por favor ingrese un producto diferente");
+                throw new Error ("Product" + title + "has already been added")
+            // return  console.log ("El articulo ya fue ingresado, por favor ingrese un producto diferente");
             }
             if (!title || !description || !price || !thumbnail || !code || !stock){
-                return console.log('Todos los campos son obligatorios')
+                // return console.log('Todos los campos son obligatorios')
+                throw new Error ("Todos los campos son obligatorios")
             }
             const product = {
                 id: this.#getMaxid() + 1 ,
@@ -44,7 +46,7 @@ class ProductManager {
             }
             this.products.push(product);       
             
-            await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8');
+            await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4), 'utf8');
 
             
         } catch (error) {
@@ -81,19 +83,31 @@ class ProductManager {
        
     };
 
-    async updateProduct (id, title, description, price, thumbnail, code, stock) {
-        const updateProduct = await this.getProductByid(id)
-        if (updateProduct) {
-            updateProduct.title = title;
-            updateProduct.description = description;
-            updateProduct.price = price;
-            updateProduct.thumbnail = thumbnail;
-            updateProduct.code = code;
-            updateProduct.stock = stock;
-            await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8');
-            return updateProduct;
-         }
+    async updateProduct(id, updatedProperties) {
+    const productToUpdate = await this.getProductByid(id);
+    if (productToUpdate) {
+        // actualiza las propiedades proporcionadas en updatedProperties
+        Object.assign(productToUpdate, updatedProperties);
+
+        // escribe la lista actualizada de productos en el archivo
+        await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4), 'utf8');
+        return productToUpdate;
     }
+    }
+    // METODO ANTERIOR
+    // async updateProduct (id, title, description, price, thumbnail, code, stock) {
+    //     const updateProduct = await this.getProductByid(id)
+    //     if (updateProduct) {
+    //         updateProduct.title = title;
+    //         updateProduct.description = description;
+    //         updateProduct.price = price;
+    //         updateProduct.thumbnail = thumbnail;
+    //         updateProduct.code = code;
+    //         updateProduct.stock = stock;
+    //         await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8');
+    //         return updateProduct;
+    //      }
+    // }
 
     async deleteProduct (id) {
         const deleteProduct = await this.getProductByid(id)
@@ -127,10 +141,20 @@ const test = async() => {
 
     await productManager.addProduct('Prity', 'Limon', 8500, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",13 , 1234 )
 
-    await productManager.updateProduct(2, 'Roman Riquelme', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
+    // await productManager.updateProduct(2, 'Roman Riquelme', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
+
+    await productManager.addProduct('Mirinda', 'Piña', 3400, "https://mirinda.com/wp-content/uploads/2024/02/mirinda-pineapple.jpg", 19, 200)
+
+    await productManager.addProduct('Schweppes', 'Naranja', 3700, "https://schweppes.com/wp-content/uploads/2024/02/schweppes-orange.jpg", 18, 210)
+
+    await productManager.addProduct('Mountain Dew', 'Code Red', 3600, "https://mountaindew.com/wp-content/uploads/2024/02/mountain-dew-code-red.jpg", 21, 220)
+
+    await productManager.addProduct('Canada Dry', 'Tonica Zero', 3800, "https://canadadry.com/wp-content/uploads/2024/02/canada-dry-tonic-zero.jpg", 20, 230)
+
+
+    await productManager.updateProduct(2, { title: "Martin Palermo", stock: 4 })
 
     console.log (await productManager.deleteProduct(3))
-
 
     console.log(await productManager.getProducts())
 
