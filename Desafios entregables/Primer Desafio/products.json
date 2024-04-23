@@ -1,1 +1,56 @@
-[{"id":1,"title":"Sprite","description":"Original","price":2800,"thumbnail":"https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg","code":1,"stock":30},{"id":2,"title":"Martin Palermo","description":"Edicion Loolapaloza","price":3400,"thumbnail":"https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg","code":2,"stock":4},{"id":4,"title":"Mirinda","description":"Piña","price":3400,"thumbnail":"https://mirinda.com/wp-content/uploads/2024/02/mirinda-pineapple.jpg","code":19,"stock":200},{"id":5,"title":"Schweppes","description":"Naranja","price":3700,"thumbnail":"https://schweppes.com/wp-content/uploads/2024/02/schweppes-orange.jpg","code":18,"stock":210},{"id":6,"title":"Mountain Dew","description":"Code Red","price":3600,"thumbnail":"https://mountaindew.com/wp-content/uploads/2024/02/mountain-dew-code-red.jpg","code":21,"stock":220},{"id":7,"title":"Canada Dry","description":"Tonica Zero","price":3800,"thumbnail":"https://canadadry.com/wp-content/uploads/2024/02/canada-dry-tonic-zero.jpg","code":20,"stock":230}]
+[
+    {
+        "id": 1,
+        "title": "Sprite",
+        "description": "Original",
+        "price": 2800,
+        "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+        "code": 1,
+        "stock": 30
+    },
+    {
+        "id": 2,
+        "title": "Martin Palermo",
+        "description": "Edicion Loolapaloza",
+        "price": 3400,
+        "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+        "code": 2,
+        "stock": 4
+    },
+    {
+        "id": 4,
+        "title": "Mirinda",
+        "description": "Piña",
+        "price": 3400,
+        "thumbnail": "https://mirinda.com/wp-content/uploads/2024/02/mirinda-pineapple.jpg",
+        "code": 19,
+        "stock": 200
+    },
+    {
+        "id": 5,
+        "title": "Schweppes",
+        "description": "Naranja",
+        "price": 3700,
+        "thumbnail": "https://schweppes.com/wp-content/uploads/2024/02/schweppes-orange.jpg",
+        "code": 18,
+        "stock": 210
+    },
+    {
+        "id": 6,
+        "title": "Mountain Dew",
+        "description": "Code Red",
+        "price": 3600,
+        "thumbnail": "https://mountaindew.com/wp-content/uploads/2024/02/mountain-dew-code-red.jpg",
+        "code": 21,
+        "stock": 220
+    },
+    {
+        "id": 7,
+        "title": "Canada Dry",
+        "description": "Tonica Zero",
+        "price": 3800,
+        "thumbnail": "https://canadadry.com/wp-content/uploads/2024/02/canada-dry-tonic-zero.jpg",
+        "code": 20,
+        "stock": 230
+    }
+]

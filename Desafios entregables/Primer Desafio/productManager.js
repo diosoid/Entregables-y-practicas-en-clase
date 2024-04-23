@@ -113,7 +113,7 @@ class ProductManager {
         const deleteProduct = await this.getProductByid(id)
         if (deleteProduct) {
             this.products = this.products.filter((e) => e.id!== id);
-            await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8');
+            await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4), 'utf8');
             return deleteProduct;
         }
         return console.log("Product not found");
