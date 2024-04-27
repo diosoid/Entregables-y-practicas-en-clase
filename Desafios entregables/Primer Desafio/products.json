@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": "212057e1-92f0-4721-bb66-af0c1875b656",
         "title": "Sprite",
         "description": "Original",
         "price": 2800,
@@ -9,16 +9,25 @@
         "stock": 30
     },
     {
-        "id": 2,
-        "title": "Martin Palermo",
+        "id": "0ba24ef0-325f-4853-8f77-64dd6c0d06d8",
+        "title": "Fanta",
         "description": "Edicion Loolapaloza",
         "price": 3400,
         "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
         "code": 2,
-        "stock": 4
+        "stock": 50
     },
     {
-        "id": 4,
+        "id": "8b4546c0-97b1-4afb-b739-4584a7782bad",
+        "title": "Prity",
+        "description": "Limon",
+        "price": 8500,
+        "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+        "code": 13,
+        "stock": 1234
+    },
+    {
+        "id": "1eec2d38-9cf2-4cd1-87fd-cdc106cf18d6",
         "title": "Mirinda",
         "description": "Piña",
         "price": 3400,
@@ -27,7 +36,7 @@
         "stock": 200
     },
     {
-        "id": 5,
+        "id": "037cbbc4-2d8b-408b-98d9-b5773e672889",
         "title": "Schweppes",
         "description": "Naranja",
         "price": 3700,
@@ -36,7 +45,7 @@
         "stock": 210
     },
     {
-        "id": 6,
+        "id": "af1e7843-4b3b-41de-ba3e-de49f232b8be",
         "title": "Mountain Dew",
         "description": "Code Red",
         "price": 3600,
@@ -45,7 +54,7 @@
         "stock": 220
     },
     {
-        "id": 7,
+        "id": "bd7f839b-16b8-4c1f-9542-3fe2aa82c7bf",
         "title": "Canada Dry",
         "description": "Tonica Zero",
         "price": 3800,

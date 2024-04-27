@@ -1,8 +1,9 @@
 
-const fs = require('fs');
+//const fs = require('fs');
+import fs from "fs"
+import {v4 as uuidv4} from 'uuid'
 
-
-class ProductManager {   
+export default class ProductManager {   
     constructor (path) {
         this.path = path;
         this.products = [];
@@ -36,7 +37,8 @@ class ProductManager {
                 throw new Error ("Todos los campos son obligatorios")
             }
             const product = {
-                id: this.#getMaxid() + 1 ,
+                id: uuidv4(),
+                //this.#getMaxid() + 1 ,
                 title,
                 description,
                 price,
@@ -47,6 +49,7 @@ class ProductManager {
             this.products.push(product);       
             
             await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4), 'utf8');
+            return product;
 
             
         } catch (error) {
@@ -58,13 +61,13 @@ class ProductManager {
 
     // METODOS ANTERIORES
 
-    #getMaxid(){
-        let maxId = 0;
-        this.products.map((product) => { 
-        if (product.id > maxId) maxId = product.id;
-        });
-        return maxId;
-    }
+    // #getMaxid(){
+    //     let maxId = 0;
+    //     this.products.map((product) => { 
+    //     if (product.id > maxId) maxId = product.id;
+    //     });
+    //     return maxId;
+    // }
         
 
     
@@ -122,9 +125,7 @@ const productManager = new ProductManager('./products.json');
 
 
 
-//Area DE pruebas
-
-
+//Area DE pruebas Minimizada
 const test = async() => {
     console.log(await productManager.getProducts())
 
@@ -157,8 +158,8 @@ const test = async() => {
 
     console.log(await productManager.getProductByid(2));
 }
-
-test()
+// De momento la funcion test queda deshabilitada
+//test()
 
 
 
