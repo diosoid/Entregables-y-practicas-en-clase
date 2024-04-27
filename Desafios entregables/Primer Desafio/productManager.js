@@ -79,17 +79,14 @@ class ProductManager {
             return getProdByID;
         }
         return  console.log ("Product not found");
-        return this.products
        
     };
 
     async updateProduct(id, updatedProperties) {
     const productToUpdate = await this.getProductByid(id);
     if (productToUpdate) {
-        // actualiza las propiedades proporcionadas en updatedProperties
         Object.assign(productToUpdate, updatedProperties);
 
-        // escribe la lista actualizada de productos en el archivo
         await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4), 'utf8');
         return productToUpdate;
     }
@@ -113,7 +110,7 @@ class ProductManager {
         const deleteProduct = await this.getProductByid(id)
         if (deleteProduct) {
             this.products = this.products.filter((e) => e.id!== id);
-            await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4), 'utf8');
+            await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8');
             return deleteProduct;
         }
         return console.log("Product not found");
@@ -166,20 +163,6 @@ test()
 
 
 
-
-// PRUBAS DEL MODELO ANTERIOR //
-// productManager.addProduct('Fanta', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 ) // CODIGO REPETIDO
-// productManager.addProduct( 'Sin Azucar', 3000, "https://coca-colaentucasa.com/wp-content/uploads/2023/06/2891-COCA-COLA-ZERO-PET-500-ml-PACK-x6-2.jpg", 3, 20 ) //CAMPO INCOMPLETO
-
-// // Productos en el arreglo
-// console.log('Los productos en el carrito son:')
-// console.log(productManager.getProduct());
-
-// // Busqueda por ID
-// console.log('El producto buscado es:')
-
-// Busqueda por ID fallida
-//productManager.getProductByid(6)
 
 
 
