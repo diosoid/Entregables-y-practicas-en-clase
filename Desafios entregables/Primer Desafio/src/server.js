@@ -18,15 +18,27 @@ app.get('/products', async (req, res) => {
     }    
 })
 
+// app.post('/products', async (req, res) => {
+//     try {
+//         const product = await productManager.addProduct(req.body)
+//         res.status(201).json(product)
+        
+//     } catch (error) {
+//         res.status(500).json({msg: error.message})        
+//     }
+// })
+
+//Correcion de chat GPT a mi metodo post que no andabaS
 app.post('/products', async (req, res) => {
     try {
-        const product = await productManager.addProduct(req, res)
-        res.status(201).json(product)
+        const { title, description, price, thumbnail, code, stock } = req.body;
+        const product = await productManager.addProduct(title, description, price, thumbnail, code, stock);
+        res.status(201).json(product);
         
     } catch (error) {
-        res.status(500).json({msg: error.message})        
+        res.status(500).json({ msg: error.message });
     }
-})
+});
 
 
 const PORT = 8080

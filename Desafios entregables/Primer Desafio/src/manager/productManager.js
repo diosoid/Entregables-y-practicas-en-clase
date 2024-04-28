@@ -47,16 +47,12 @@ export default class ProductManager {
                 code,
                 stock
             }
-            products.push(product);       
-            
+            products.push(product);                   
             await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4), 'utf8');
-            return product;
-            
+            return product;            
         } catch (error) {
-            console.log(error)
-            
-        }
-        
+            console.log(error)            
+        }    
     }     
 
     // METODOS ANTERIORES (Get MAX)

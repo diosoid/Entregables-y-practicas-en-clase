@@ -1,0 +1,22 @@
+[
+    {
+        "id": "b4da5bed-dd27-4c0d-bb46-f705f4f8aa3d",
+        "title": {
+            "title": "Sprite",
+            "description": "Original",
+            "price": 2800,
+            "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+            "code": 1,
+            "stock": 30
+        }
+    },
+    {
+        "id": "64feb198-3a4f-4d6a-9aee-9809aaec5b9d",
+        "title": "Sprite",
+        "description": "Original",
+        "price": 2800,
+        "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+        "code": 1,
+        "stock": 30
+    }
+]
