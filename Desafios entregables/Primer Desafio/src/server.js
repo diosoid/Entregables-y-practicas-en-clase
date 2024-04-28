@@ -6,18 +6,28 @@ const productManager = new ProductManager('./products.json');
 
 const app = express();
 
-app.get('/porducts', async (req, res) => {
+app.use(express.json())
 
+app.get('/products', async (req, res) => {
+    
     try {
         const products = await productManager.getProducts();
-        res.status(200).json(products)
+        res.status(200).json(products)        
+    } catch (error) {
+        res.status(500).json({msg: error.message})        
+    }    
+})
+
+app.post('/products', async (req, res) => {
+    try {
+        const product = await productManager.addProduct(req, res)
+        res.status(201).json(product)
         
     } catch (error) {
-        res.status(500).json({msg: error.message})
-        
+        res.status(500).json({msg: error.message})        
     }
-    
 })
+
 
 const PORT = 8080
 

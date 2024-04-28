@@ -6,15 +6,16 @@ import {v4 as uuidv4} from 'uuid'
 export default class ProductManager {   
     constructor (path) {
         this.path = path;
-        this.products = [];
+        //this.products = [];
     } 
 
     async getProducts () {
         try {
             if(fs.existsSync(this.path)){
                 const products = await fs.promises.readFile(this.path, 'utf8');
-                this.products = JSON.parse(products)
-                return this.products
+                return JSON.parse(products)
+                //this.products = JSON.parse(products)
+                //return this.products
             } else return []
             
         } catch (error) {
@@ -26,8 +27,8 @@ export default class ProductManager {
 
     async addProduct (title , description ,price ,thumbnail , code ,stock ) {
         try {
-            await this.getProducts()
-            const checkCode = await this.products.find((e) => e.code === code);
+            const products = await this.getProducts()
+            const checkCode = await products.find((e) => e.code === code);
             if (checkCode) {
                 throw new Error ("Product" + title + "has already been added")
             // return  console.log ("El articulo ya fue ingresado, por favor ingrese un producto diferente");
@@ -46,11 +47,10 @@ export default class ProductManager {
                 code,
                 stock
             }
-            this.products.push(product);       
+            products.push(product);       
             
-            await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4), 'utf8');
+            await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4), 'utf8');
             return product;
-
             
         } catch (error) {
             console.log(error)
@@ -59,7 +59,7 @@ export default class ProductManager {
         
     }     
 
-    // METODOS ANTERIORES
+    // METODOS ANTERIORES (Get MAX)
 
     // #getMaxid(){
     //     let maxId = 0;
@@ -73,15 +73,21 @@ export default class ProductManager {
     
     async getProductByid (id) {
 
-        const products = await fs.promises.readFile(this.path, 'utf8');
-        this.products = JSON.parse(products)
-        
-        const  getProdByID = this.products.find((e) => e.id === id);
-        
-        if (getProdByID) {
-            return getProdByID;
+        const products = await this.getProducts()
+        const productExist = products.find((e) => e.id === id)
+
+        if (productExist) {
+            return productExist;
         }
-        return  console.log ("Product not found");
+        throw new Error ("Product not found")
+
+        //return  console.log ("Product not found");
+        //const products = await fs.promises.readFile(this.path, 'utf8');
+        //this.products = JSON.parse(products)       
+        //const  getProdByID = this.products.find((e) => e.id === id);        
+        // if (getProdByID) {
+        //     return getProdByID;
+        // }
        
     };
 
@@ -90,7 +96,7 @@ export default class ProductManager {
     if (productToUpdate) {
         Object.assign(productToUpdate, updatedProperties);
 
-        await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4), 'utf8');
+        await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4), 'utf8');
         return productToUpdate;
     }
     }
@@ -112,52 +118,49 @@ export default class ProductManager {
     async deleteProduct (id) {
         const deleteProduct = await this.getProductByid(id)
         if (deleteProduct) {
-            this.products = this.products.filter((e) => e.id!== id);
-            await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8');
+            products = products.filter((e) => e.id!== id);
+            await fs.promises.writeFile(this.path, JSON.stringify(products), 'utf8');
             return deleteProduct;
         }
         return console.log("Product not found");
     }
 }
 
-const productManager = new ProductManager('./products.json');
-
-
-
+//const productManager = new ProductManager('./products.json');
 
 //Area DE pruebas Minimizada
-const test = async() => {
-    console.log(await productManager.getProducts())
+// const test = async() => {
+//     console.log(await productManager.getProducts())
 
-    await productManager.addProduct('Sprite', 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 )
+//     await productManager.addProduct('Sprite', 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 )
 
-    await productManager.addProduct('Sprite', 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 ) //Codigo Duplicado
+//     await productManager.addProduct('Sprite', 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 ) //Codigo Duplicado
 
-    await productManager.addProduct( 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 ) //Campo sin completar
+//     await productManager.addProduct( 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 ) //Campo sin completar
 
-    await productManager.addProduct('Fanta', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
+//     await productManager.addProduct('Fanta', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
 
-    await productManager.addProduct('Prity', 'Limon', 8500, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",13 , 1234 )
+//     await productManager.addProduct('Prity', 'Limon', 8500, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",13 , 1234 )
 
-    // await productManager.updateProduct(2, 'Roman Riquelme', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
+//     // await productManager.updateProduct(2, 'Roman Riquelme', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
 
-    await productManager.addProduct('Mirinda', 'Piña', 3400, "https://mirinda.com/wp-content/uploads/2024/02/mirinda-pineapple.jpg", 19, 200)
+//     await productManager.addProduct('Mirinda', 'Piña', 3400, "https://mirinda.com/wp-content/uploads/2024/02/mirinda-pineapple.jpg", 19, 200)
 
-    await productManager.addProduct('Schweppes', 'Naranja', 3700, "https://schweppes.com/wp-content/uploads/2024/02/schweppes-orange.jpg", 18, 210)
+//     await productManager.addProduct('Schweppes', 'Naranja', 3700, "https://schweppes.com/wp-content/uploads/2024/02/schweppes-orange.jpg", 18, 210)
 
-    await productManager.addProduct('Mountain Dew', 'Code Red', 3600, "https://mountaindew.com/wp-content/uploads/2024/02/mountain-dew-code-red.jpg", 21, 220)
+//     await productManager.addProduct('Mountain Dew', 'Code Red', 3600, "https://mountaindew.com/wp-content/uploads/2024/02/mountain-dew-code-red.jpg", 21, 220)
 
-    await productManager.addProduct('Canada Dry', 'Tonica Zero', 3800, "https://canadadry.com/wp-content/uploads/2024/02/canada-dry-tonic-zero.jpg", 20, 230)
+//     await productManager.addProduct('Canada Dry', 'Tonica Zero', 3800, "https://canadadry.com/wp-content/uploads/2024/02/canada-dry-tonic-zero.jpg", 20, 230)
 
 
-    await productManager.updateProduct(2, { title: "Martin Palermo", stock: 4 })
+//     await productManager.updateProduct(2, { title: "Martin Palermo", stock: 4 })
 
-    console.log (await productManager.deleteProduct(3))
+//     console.log (await productManager.deleteProduct(3))
 
-    console.log(await productManager.getProducts())
+//     console.log(await productManager.getProducts())
 
-    console.log(await productManager.getProductByid(2));
-}
+//     console.log(await productManager.getProductByid(2));
+// }
 // De momento la funcion test queda deshabilitada
 //test()
 
