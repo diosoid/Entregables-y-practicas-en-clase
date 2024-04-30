@@ -88,15 +88,34 @@ export default class ProductManager {
     };
 
     async updateProduct(id, updatedProperties) {
-    const productToUpdate = await this.getProductByid(id);
-    if (productToUpdate) {
-        Object.assign(productToUpdate, updatedProperties);
+        const products = await this.getProducts(); 
+        const productToUpdateIndex = products.findIndex(product => product.id === id);
+    
+        if (productToUpdateIndex !== -1) {           
+            products[productToUpdateIndex] = { ...products[productToUpdateIndex], ...updatedProperties };          
+            await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4), 'utf8');
+    
+            return products[productToUpdateIndex]; 
+        } else {
+           
+            return null; 
+        }
+    }   
 
-        await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4), 'utf8');
-        return productToUpdate;
-    }
-    }
-    // METODO ANTERIOR
+    //Update version 3
+
+    //Update version 2
+
+    // async updateProduct(id, updatedProperties) {
+    // const productToUpdate = await this.getProductByid(id);
+    // if (productToUpdate) {
+    //     Object.assign(productToUpdate, updatedProperties);
+
+    //     await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4), 'utf8');
+    //     return productToUpdate;
+    // }
+    // }
+    // Update version 1
     // async updateProduct (id, title, description, price, thumbnail, code, stock) {
     //     const updateProduct = await this.getProductByid(id)
     //     if (updateProduct) {
@@ -111,54 +130,35 @@ export default class ProductManager {
     //      }
     // }
 
-    async deleteProduct (id) {
-        const deleteProduct = await this.getProductByid(id)
-        if (deleteProduct) {
-            products = products.filter((e) => e.id!== id);
-            await fs.promises.writeFile(this.path, JSON.stringify(products), 'utf8');
-            return deleteProduct;
+    
+    async deleteProduct(id) {
+        try {
+            let products = await this.getProducts();       
+            const deleteProductIndex = products.findIndex(product => product.id === id);
+            if (deleteProductIndex !== -1) {              
+                const deletedProduct = products.splice(deleteProductIndex, 1)[0];          
+                await fs.promises.writeFile(this.path, JSON.stringify(products), 'utf8');   
+                return deletedProduct; 
+            } else {
+                throw new Error("Product not found");
+            }
+        } catch (error) {
+            throw new Error("Error deleting product: " + error.message);
         }
-        return console.log("Product not found");
     }
+    
+//MI METODO DELETE VIEJO QUE NO FUNCIONA Y NO SE PORQUE //
+    // async deleteProduct (id) {
+    //     const deleteProduct = await this.getProductByid(id)
+    //     if (deleteProduct) {
+    //          products = products.filter((e) => e.id!== id);
+    //         await fs.promises.writeFile(this.path, JSON.stringify(products), 'utf8');
+    //         return deleteProduct;
+    //     }
+    //     return console.log("Product not found");
+    // }
 }
 
-//const productManager = new ProductManager('./products.json');
-
-//Area DE pruebas Minimizada
-// const test = async() => {
-//     console.log(await productManager.getProducts())
-
-//     await productManager.addProduct('Sprite', 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 )
-
-//     await productManager.addProduct('Sprite', 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 ) //Codigo Duplicado
-
-//     await productManager.addProduct( 'Original', 2800, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",1 ,30 ) //Campo sin completar
-
-//     await productManager.addProduct('Fanta', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
-
-//     await productManager.addProduct('Prity', 'Limon', 8500, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",13 , 1234 )
-
-//     // await productManager.updateProduct(2, 'Roman Riquelme', 'Edicion Loolapaloza', 3400, "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",2 , 50 )
-
-//     await productManager.addProduct('Mirinda', 'Piña', 3400, "https://mirinda.com/wp-content/uploads/2024/02/mirinda-pineapple.jpg", 19, 200)
-
-//     await productManager.addProduct('Schweppes', 'Naranja', 3700, "https://schweppes.com/wp-content/uploads/2024/02/schweppes-orange.jpg", 18, 210)
-
-//     await productManager.addProduct('Mountain Dew', 'Code Red', 3600, "https://mountaindew.com/wp-content/uploads/2024/02/mountain-dew-code-red.jpg", 21, 220)
-
-//     await productManager.addProduct('Canada Dry', 'Tonica Zero', 3800, "https://canadadry.com/wp-content/uploads/2024/02/canada-dry-tonic-zero.jpg", 20, 230)
-
-
-//     await productManager.updateProduct(2, { title: "Martin Palermo", stock: 4 })
-
-//     console.log (await productManager.deleteProduct(3))
-
-//     console.log(await productManager.getProducts())
-
-//     console.log(await productManager.getProductByid(2));
-// }
-// De momento la funcion test queda deshabilitada
-//test()
 
 
 

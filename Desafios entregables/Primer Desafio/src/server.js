@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { json } from 'express';
 import ProductManager from './manager/productManager.js';
 
 const productManager = new ProductManager('./products.json');
@@ -41,27 +41,58 @@ app.get ('/products/:id', async(req, res)=>{
     }
 })
 
-app.put ('/products/:id', async(req, res)=>{
+app.put('/products/:id', async (req, res) => {
     try {
-        //const {id} = req.params
         const { id } = req.params;
-        const prodUpdate = await productManager.updateProduct(id, req.body.title, req.body.description, req.body.price, req.body.thumbnail, req.body.code, req.body.stock)
-        if(!prodUpdate)res.status(404).json({msg: 'Error updating product'})
-        res.status(200).json(prodUpdate)
+        const updatedProperties = req.body;
+        const prodUpdate = await productManager.updateProduct(id, updatedProperties);
+
+        if (!prodUpdate) {
+            return res.status(404).json({ msg: 'Error updating product' });
+        }
+        res.status(200).json(prodUpdate);
+    } catch (error) {        
+        res.status(500).json({ msg: error.message });
+    }
+});
+
+
+
+app.delete ('/products/:id', async(req, res)=>{
+    try {
+        const {id} = req.params
+        const deletedProduct = await productManager.deleteProduct(id)
+        if (!deletedProduct) {
+            return res.status(404).json({ msg: 'Product not found' });
+        }
+        res.status(200).json({msg: `Product id: ${id} deleted successfully`})
 
     } catch (error) {
         res.status(500).json({msg: error.message})        
     }
 })
-// app.delete ('/products/:id', async(req, res)=>{
-//     try {
-//         const {id} = req.params
 
-//     } catch (error) {
-//         res.status(500).json({msg: error.message})        
-//     }
-// })
 
+
+const PORT = 8080
+
+app.listen(PORT, () =>console.log(`Server runing on port ${PORT}`)  )
+
+//METODOS Y PRUEBAS VIEJAS
+
+        // app.put ('/products/:id', async(req, res)=>{
+        //     try {
+        //         //const {id} = req.params
+        //         const { id } = req.params;
+        //         const updatedProperties = req.body
+        //         const prodUpdate = await productManager.updateProduct(id, updatedProperties)
+        //         if(!prodUpdate)res.status(404).json({msg: 'Error updating product'})
+        //         res.status(200).json(prodUpdate)
+        
+        //     } catch (error) {
+        //         res.status(500).json({msg: error.message})        
+        //     }
+        // })
 
 // app.post('/products', async (req, res) => {
 //     try {
@@ -74,8 +105,3 @@ app.put ('/products/:id', async(req, res)=>{
 // })
 
 //Correcion de chat GPT a mi metodo post que no andabaS
-
-
-const PORT = 8080
-
-app.listen(PORT, () =>console.log(`Server runing on port ${PORT}`)  )
