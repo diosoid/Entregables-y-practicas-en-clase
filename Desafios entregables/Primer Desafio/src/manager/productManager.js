@@ -51,7 +51,7 @@ export default class ProductManager {
             await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4), 'utf8');
             return product;            
         } catch (error) {
-            console.log(error)            
+            throw new Error ("Se produjo un error inesperado aca codigo 666")           
         }    
     }     
 

@@ -1,1 +1,56 @@
-[]
+[
+    {
+        "id": "cf11e159-bd2d-4f52-8963-ac7c50b2847a",
+        "title": "ledesma",
+        "description": "azucar",
+        "price": 6666,
+        "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+        "code": 96,
+        "stock": 350
+    },
+    {
+        "id": "a87a3b2c-8bc1-41fe-93d3-fcdd4b461d27",
+        "title": "cafe",
+        "description": "morenita",
+        "price": 9999,
+        "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+        "code": 69,
+        "stock": 80000
+    },
+    {
+        "id": "df8a1c51-ff30-4cb8-983c-6b17dc504b74",
+        "title": "yerba",
+        "description": "mañanita",
+        "price": 9696,
+        "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+        "code": 6969,
+        "stock": 3333
+    },
+    {
+        "id": "02b8ff07-3c96-4c9a-a444-3adb55b3b663",
+        "title": "pomelo",
+        "description": "pepe",
+        "price": 12345767989,
+        "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+        "code": 1234567890,
+        "stock": 1234566789
+    },
+    {
+        "id": "2273eacb-0338-462c-9a90-f65ead594645",
+        "title": "naranja",
+        "description": "crush",
+        "price": 1.2345764234234234e+23,
+        "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+        "code": 1.2345632423423425e+21,
+        "stock": 1.2345642342342432e+22
+    },
+    {
+        "id": "be9cc6f7-0c51-4c94-8ffa-0a5eae89f628",
+        "title": "raul",
+        "description": "perez",
+        "price": 6.666666666666667e+27,
+        "thumbnail": "https://coca-colaentucasa.com/wp-content/uploads/2024/02/3193-CCZ-473X6-CREATIONS-KWAVE.jpg",
+        "code": 6.666666666666667e+27,
+        "stock": 6.666666666666666e+35
+    }
+]

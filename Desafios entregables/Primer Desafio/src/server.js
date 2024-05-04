@@ -11,8 +11,13 @@ app.use(express.json())
 app.get('/products', async (req, res) => {
     
     try {
-        const products = await productManager.getProducts();
+        const limit = parseInt(req.query.limit);
+        let products = await productManager.getProducts();
+        if (!isNaN(limit) && limit > 0) {
+            products = products.slice(0, limit);
+        }
         res.status(200).json(products)        
+        
     } catch (error) {
         res.status(500).json({msg: error.message})        
     }    
@@ -33,7 +38,7 @@ app.get ('/products/:id', async(req, res)=>{
         const {id} = req.params
         const product = await productManager.getProductByid(id)
         if(!product) res.status(404).json({msg: 'Product not found'})
-        else res.status(500).json(product)
+        else res.status(200).json(product)
 
 
     } catch (error) {
