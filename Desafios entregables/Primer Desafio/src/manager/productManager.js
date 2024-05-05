@@ -25,7 +25,7 @@ export default class ProductManager {
     }
     
 
-    async addProduct (title , description ,price ,thumbnail , code ,stock ) {
+    async addProduct (title , description ,price , status, thumbnail , code ,stock ) {
         try {
             const products = await this.getProducts()
             const checkCode = await products.find((e) => e.code === code);
@@ -43,6 +43,7 @@ export default class ProductManager {
                 title,
                 description,
                 price,
+                status: true,
                 thumbnail,
                 code,
                 stock
