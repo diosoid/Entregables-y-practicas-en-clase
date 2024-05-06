@@ -4,13 +4,9 @@ import cartRouter from './routes/cartRouter.js'
 import { __dirname } from './path.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
-
 // import ProductManager from './manager/productManager.js';
 // const productManager = new ProductManager('./products.json');
-
-
 const app = express();
-
 app.use(express.static(__dirname + '/public'))
 app.use(express.json())
 // esta parte estaba en el codigo del profe de la clase no estoy seguro si es necesaria o

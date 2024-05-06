@@ -3,7 +3,7 @@ import fs from "fs"
 import {v4 as uuidv4} from "uuid"
 
 import ProductManager from "./productManager.js"
-const productManager = new ProductManager(`${__dirname}/data/product.json`)
+const productManager = new ProductManager(`./src/data/product.json`)
 
 
 export default class CartManager {
@@ -57,10 +57,8 @@ export default class CartManager {
         try {            
             const productExist = await productManager.getProductByid(idProduct)
             if(!productExist) throw new Error ('Product not exist')
-
             const cartExist = await this.getCartByid(idCart)
             if(!cartExist) throw new Error ('Cart not exist')
-
             let cartsFile = await this.getAllCarts()
             const existProdInCart = cartExist.products.find((prod) => prod.id === idProduct)
             if(!existProdInCart){
@@ -73,14 +71,12 @@ export default class CartManager {
             const updatedCarts = cartsFile.map ((cart) => {
                 if (cart.id === idCart) 
                     return cartExist
-                return cart
-                
+                return cart                
             })  
             await fs.promises.writeFile(this.path, JSON.stringify(updatedCarts))
             return cartExist         
         } catch (error) {
-            throw new Error (error)
-            
+            throw new Error (error)           
         }
 }
 

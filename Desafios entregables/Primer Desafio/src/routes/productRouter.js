@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
         res.status(500).json({ msg: error.message });
     }
 });
-router.get ('/:id', async(req, res)=>{
+router.get ('/:id', async(req, res, next)=>{
     try {
         const {id} = req.params
         const product = await productManager.getProductByid(id)
