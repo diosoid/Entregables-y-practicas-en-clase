@@ -3,7 +3,7 @@ import fs from "fs"
 import {v4 as uuidv4} from "uuid"
 
 import ProductManager from "./productManager.js"
-const productManager = new ProductManager(`./src/data/product.json`)
+const productManager = new ProductManager(`./src/data/products.json`)
 
 
 export default class CartManager {
