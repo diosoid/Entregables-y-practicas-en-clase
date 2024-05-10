@@ -1,50 +1,44 @@
 
-//const fs = require('fs');
 import fs from "fs"
 import {v4 as uuidv4} from 'uuid'
 
 export default class ProductManager {   
     constructor (path) {
         this.path = path;
-        //this.products = [];
+        
     } 
 
     async getProducts () {
         try {
             if(fs.existsSync(this.path)){
                 const products = await fs.promises.readFile(this.path, 'utf8');
-                return JSON.parse(products)
-                //this.products = JSON.parse(products)
-                //return this.products
-            } else return []
-            
+                return JSON.parse(products)               
+            } else return []           
         } catch (error) {
-            console.log(error)          
+            throw new Error ("No product was found.")           
         }
         
     }
     
 
-    async addProduct (title , description ,price , status, thumbnail , code ,stock ) {
+    async addProduct (title , description ,price , code ,stock ) {
         try {
             const products = await this.getProducts()
             const checkCode = await products.find((e) => e.code === code);
             if (checkCode) {
                 throw new Error ("Product" + title + "has already been added")
-            // return  console.log ("El articulo ya fue ingresado, por favor ingrese un producto diferente");
             }
-            if (!title || !description || !price || !thumbnail || !code || !stock){
-                // return console.log('Todos los campos son obligatorios')
+            if (!title || !description || !price || !code || !stock){            
                 throw new Error ("Todos los campos son obligatorios")
             }
             const product = {
                 id: uuidv4(),
-                //this.#getMaxid() + 1 ,
+               
                 title,
                 description,
                 price,
                 status: true,
-                thumbnail,
+                thumbnails: [],
                 code,
                 stock
             }
@@ -52,20 +46,9 @@ export default class ProductManager {
             await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4), 'utf8');
             return product;            
         } catch (error) {
-            throw new Error ("Se produjo un error inesperado aca codigo 666")           
+            throw new Error ("An unexpected error occurred while trying to add the product.")           
         }    
     }     
-
-    // METODOS ANTERIORES (Get MAX)
-
-    // #getMaxid(){
-    //     let maxId = 0;
-    //     this.products.map((product) => { 
-    //     if (product.id > maxId) maxId = product.id;
-    //     });
-    //     return maxId;
-    // }
-        
 
     
     async getProductByid (id) {
@@ -78,13 +61,7 @@ export default class ProductManager {
         }
         throw new Error ("Product not found")
 
-        //return  console.log ("Product not found");
-        //const products = await fs.promises.readFile(this.path, 'utf8');
-        //this.products = JSON.parse(products)       
-        //const  getProdByID = this.products.find((e) => e.id === id);        
-        // if (getProdByID) {
-        //     return getProdByID;
-        // }
+      
        
     };
 
@@ -99,38 +76,9 @@ export default class ProductManager {
             return products[productToUpdateIndex]; 
         } else {
            
-            return null; 
+            throw new Error ("Product wan unable to be updated.")
         }
     }   
-
-    //Update version 3
-
-    //Update version 2
-
-    // async updateProduct(id, updatedProperties) {
-    // const productToUpdate = await this.getProductByid(id);
-    // if (productToUpdate) {
-    //     Object.assign(productToUpdate, updatedProperties);
-
-    //     await fs.promises.writeFile(this.path, JSON.stringify(this.products, null, 4), 'utf8');
-    //     return productToUpdate;
-    // }
-    // }
-    // Update version 1
-    // async updateProduct (id, title, description, price, thumbnail, code, stock) {
-    //     const updateProduct = await this.getProductByid(id)
-    //     if (updateProduct) {
-    //         updateProduct.title = title;
-    //         updateProduct.description = description;
-    //         updateProduct.price = price;
-    //         updateProduct.thumbnail = thumbnail;
-    //         updateProduct.code = code;
-    //         updateProduct.stock = stock;
-    //         await fs.promises.writeFile(this.path, JSON.stringify(this.products), 'utf8');
-    //         return updateProduct;
-    //      }
-    // }
-
     
     async deleteProduct(id) {
         try {
@@ -148,20 +96,11 @@ export default class ProductManager {
         }
     }
     
-//MI METODO DELETE VIEJO QUE NO FUNCIONA Y NO SE PORQUE //
-    // async deleteProduct (id) {
-    //     const deleteProduct = await this.getProductByid(id)
-    //     if (deleteProduct) {
-    //          products = products.filter((e) => e.id!== id);
-    //         await fs.promises.writeFile(this.path, JSON.stringify(products), 'utf8');
-    //         return deleteProduct;
-    //     }
-    //     return console.log("Product not found");
-    // }
+
 }
 
 
-
+//Thumbnail lo saque de la validacion porque no es obligatorio pero no entendi eso de que ahora es thumnails y debe ser un array ? que deberia hacer en ese caso. 
 
 
 
