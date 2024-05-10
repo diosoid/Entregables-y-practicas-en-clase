@@ -5,6 +5,7 @@ import { __dirname } from './path.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
 
+const app = express();
 app.use(express.static(__dirname + '/public'))
 app.use(express.json())
 
@@ -18,4 +19,5 @@ app.use(errorHandler)
 const PORT = 8080
 
 app.listen(PORT, () =>console.log(`Server runing on port ${PORT}`)  )
+
 
