@@ -1,14 +1,11 @@
-{{#if productos.length }}
-    {{#each productos}}
+{{#if products.length }}
+    {{#each products}}
     <ul>
-        <li>{{title}}</li>
-        <li>{{description}}</li>
-        <li>{{price}}</li>
-        <li>{{}}</li>
-        <li>{{}}</li>
-        <li>{{}}</li>
+        <li>{{products.title}}</li>
+        <li>{{products.description}}</li>
+        <li>{{products.price}}</li>       
     </ul>
     {{#/each}}
-    {{else}}
+{{else}}
     <p>there is no products on stock</p>
 {{/if}}

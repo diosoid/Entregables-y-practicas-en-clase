@@ -22,8 +22,11 @@ router.get("/vista3", (req, res) => {
 })
 
 router.get("/Listadeproductos", async (req, res) => {
-    let productos = JSON.parse(fs.readFileSync('./products.json', 'utf-8'))
-    res.render('Listadeproductos', {productos})
+    let productsJSON = await fs.promises.readFile('products.json', 'utf-8')
+    let products = JSON.parse(productsJSON)
+    res.render('Listadeproductos', {products} )
+
+    
 
 })
 
