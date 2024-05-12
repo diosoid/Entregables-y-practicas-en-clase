@@ -21,7 +21,7 @@ export default class ProductManager {
     }
     
 
-    async addProduct (title , description ,price , code ,stock ) {
+    async addProduct (title , description ,price ,thumbnails, code ,stock ) {
         try {
             const products = await this.getProducts()
             const checkCode = await products.find((e) => e.code === code);
@@ -32,13 +32,12 @@ export default class ProductManager {
                 throw new Error ("Todos los campos son obligatorios")
             }
             const product = {
-                id: uuidv4(),
-               
+                id: uuidv4(),               
                 title,
                 description,
                 price,
                 status: true,
-                thumbnails: [],
+                thumbnails,
                 code,
                 stock
             }

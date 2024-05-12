@@ -1,0 +1,1 @@
+console.log(' realizando las practicas de la clase y aplicando lo aprendido // este script se ejecuta desde handlebars')
