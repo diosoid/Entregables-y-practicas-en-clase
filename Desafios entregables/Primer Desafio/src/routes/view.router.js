@@ -3,12 +3,6 @@ import fs from 'fs'
 
 const router = Router()
 
-router.get("/", (req, res) => {
-    res.render('vista1' )
-})
-router.get("/vista2", (req, res) => {
-    res.render('vista2' )
-})
 router.get("/vista3", (req, res) => {
 
     let user = {
@@ -21,10 +15,10 @@ router.get("/vista3", (req, res) => {
     res.render('vista3', {user} )
 })
 
-router.get("/Listadeproductos", async (req, res) => {
-    let productsJSON = await fs.promises.readFile('products.json', 'utf-8')
+router.get("/prodList", async (req, res) => {
+    let productsJSON = await fs.promises.readFile('./src/data/products.json', 'utf-8')
     let products = JSON.parse(productsJSON)
-    res.render('Listadeproductos', {products} )
+    res.render('listaDeProductos', {products} )
 
     
 
