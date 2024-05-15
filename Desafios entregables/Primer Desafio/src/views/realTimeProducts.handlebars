@@ -28,9 +28,26 @@
                 <input type="text" id="category" name="category" required>
             </div>
             <button type="submit" class="btn btn-primary">Create Product</button>
-    </form>
+        </form>
     </div>
-    </section>
+</section>
+
+{{!-- //Funcion delete --}}
+<section class="forms-section">
+    <div>
+        <h2>Delete product:</h2>
+        <form id="product-form-delete">
+            
+            <div>
+                <label for="description">Insert product ID:</label>
+                <textarea id="delete-id" name="description" rows="3" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
+    </div>
+</section>
+
     <table class="product-table">
     <thead>
         <tr>
@@ -47,6 +64,6 @@
     </thead>
     <tbody id="body-table">
     </tbody>
-</table>
+    </table>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>

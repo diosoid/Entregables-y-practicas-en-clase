@@ -162,83 +162,6 @@
         "stock": 2.444444444444444e+36
     },
     {
-        "id": "86774d1a-a713-40fd-9579-58d59fd78cd1",
-        "title": "Ruffles",
-        "description": "Patatas fritas onduladas",
-        "price": 2.555555555555556e+28,
-        "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/71kpmv8A8jL._SL1500_.jpg",
-        "code": 2.555555555555556e+28,
-        "stock": 2.555555555555556e+36
-    },
-    {
-        "id": "87774d1a-a713-40fd-9579-58d59fd78cd1",
-        "title": "Mountain Dew",
-        "description": "Refresco de sabor cítrico",
-        "price": 2.666666666666667e+28,
-        "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/71mXfqNJ5HL._SL1500_.jpg",
-        "code": 2.666666666666667e+28,
-        "stock": 2.6666666666666666e+36
-    },
-    {
-        "id": "88774d1a-a713-40fd-9579-58d59fd78cd1",
-        "title": "Fanta",
-        "description": "Refresco de naranja",
-        "price": 2.777777777777778e+28,
-        "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/81v14OC-XNL._SL1500_.jpg",
-        "code": 2.777777777777778e+28,
-        "stock": 2.777777777777778e+36
-    },
-    {
-        "id": "c9feb6d7-511e-40da-bcf3-0e001cfccd5a",
-        "title": "asd",
-        "description": "asd",
-        "price": "123",
-        "status": true,
-        "code": "123",
-        "stock": "123",
-        "category": "123"
-    },
-    {
-        "id": "3f53816b-6f5f-44d5-bed9-03d26f0108a0",
-        "title": "12",
-        "description": "123",
-        "price": "123",
-        "status": true,
-        "code": "1233123123",
-        "stock": "123",
-        "category": "123"
-    },
-    {
-        "id": "b809ece4-174a-459c-add4-c8776962e468",
-        "title": "PRUEBA",
-        "description": "asdPRUEBA",
-        "price": "15000",
-        "status": true,
-        "code": "534923",
-        "stock": "5",
-        "category": "PRUEBA"
-    },
-    {
-        "id": "7af75fff-92d5-4f2c-b752-e6acbf9d366b",
-        "title": "PRUEBA",
-        "description": "asdPRUEBA",
-        "price": "15000",
-        "status": true,
-        "code": "5349231",
-        "stock": "5",
-        "category": "PRUEBA"
-    },
-    {
-        "id": "6c0814ed-bd76-4801-9ae9-ffa27b2ed3da",
-        "title": "ASDD",
-        "description": "DDD",
-        "price": "15000",
-        "status": true,
-        "code": "12323123AS",
-        "stock": "5",
-        "category": "ASD"
-    },
-    {
         "id": "5341a661-9290-4c5e-a1cf-5c1cea91acb8",
         "title": "prueba2",
         "description": "prueba2",
@@ -277,5 +200,45 @@
         "code": "124123123",
         "stock": "31231",
         "category": "31"
+    },
+    {
+        "id": "32790d3c-33d7-462d-bcb3-6e8827e98bfb",
+        "title": "note",
+        "description": "lenovo",
+        "price": "230",
+        "status": true,
+        "code": "987654321",
+        "stock": "55",
+        "category": "electronica"
+    },
+    {
+        "id": "6cacf0a4-2372-40e8-9ce0-aaedcc8c1539",
+        "title": "note",
+        "description": "lenovo",
+        "price": "230",
+        "status": true,
+        "code": "98765432178",
+        "stock": "55",
+        "category": "electronica"
+    },
+    {
+        "id": "b7b06fe0-6042-4b36-9f18-226960e369ed",
+        "title": "note",
+        "description": "lenovo",
+        "price": "230",
+        "status": true,
+        "code": "9876543217877",
+        "stock": "55",
+        "category": "electronica"
+    },
+    {
+        "id": "82948917-d428-479f-826c-140a0b64e664",
+        "title": "note",
+        "description": "lenovo",
+        "price": "230",
+        "status": true,
+        "code": "9876543217877998",
+        "stock": "55",
+        "category": "electronica"
     }
 ]

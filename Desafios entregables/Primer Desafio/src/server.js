@@ -7,6 +7,8 @@ import handlebars from 'express-handlebars'
 import router from './routes/view.router.js'
 import { Server } from 'socket.io'
 import ProductManager from './manager/productManager.js';
+
+//Quizas sea una pregunta muy basica pero en esta linea estas asignando a la variable productManager una nueva instancia de la clase, hasta ahi lo entiendo pero porque le pasas la ruta del json con la data por parametros no entiendo esa parte.
 const productManager = new ProductManager("./src/data/products.json")
 
 
@@ -22,19 +24,19 @@ app.use('/api/carts', cartRouter)
 app.use('/api/products', productRouter)
 app.use('/', router)
 
-app.get('/', (req, res) => {
-    res.render('websocket')
-})
+//Poor ahora fuera de uso
+// app.get('/', (req, res) => {
+//     res.render('websocket')
+// })
 
 app.use(errorHandler)
 
-const PORT = 3001
+const PORT = 8080
 
 const httpServer = app.listen(PORT, () => console.log(`Server runing on port ${PORT}`))
 
 const socketServer = new Server(httpServer)
 
-const products = []
 
 socketServer.on('connection', async (socket) => {
 
@@ -43,16 +45,7 @@ socketServer.on('connection', async (socket) => {
         console.log(`Client disconnected ${socket.id}`)
     })
 
-    // socket.emit('saludoDesdeBack', 'Bienvenido a web socket')
-
-    // socket.on('respuestadesdefront', (message) => {
-    //     console.log(message)
-    // })
-
-    // socket.on('newProduct', (prod) => {
-    //     products.push(prod)
-    //     socket.emit('products', products)
-    // })
+    
     const productsData = await productManager.getProducts()
     socket.emit("productsData", productsData)
     socket.on("newProductData", async (prod) => {
@@ -64,6 +57,15 @@ socketServer.on('connection', async (socket) => {
             prod.stock,
             prod.category)
     })
+
+    const prodToDelete = await productManager.getProducts()
+    socket.emit("prodToDelete", prodToDelete)
+    socket.on("deleteProduct", async (prod) => {
+        await productManager.deleteProduct(prod.id)
+    })
+
+
+
 })
 
 
