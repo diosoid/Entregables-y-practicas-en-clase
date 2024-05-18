@@ -24,10 +24,13 @@ form.addEventListener('submit', (event) => {
 //     socketClient.emit("newDeleteData", newDeleteData)
 // })
 
-socket.on('deleteProduct', async (id) => { 
-    await productManager.deleteProduct(id) //utilizamos el delete que armamos en el product manager
-    socket.emit('productos', products) //actualizamos la tabla
-
+const productFormDelete = document.getElementById('product-form-delete')
+  productFormDelete.addEventListener('submit', (event) => { //agregamos el event listener para cuando se haga clic en el boton
+  event.preventDefault()
+  let id = document.getElementById('id').value
+  console.log(id)
+   //agarramos el value (id del producto) del input del formulario
+  socket.emit('deleteProduct', id) //y lo mandamos al back
   })
 
 const updateTable = (products) => {
