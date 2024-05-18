@@ -15,14 +15,20 @@ form.addEventListener('submit', (event) => {
     socketClient.emit("newProductData", newProductData)
 })
 
-const deleteProd = document.getElementById("product-form-delete")
-deleteProd.addEventListener('submit', (event) => {
-    event.preventDefault()
-     const deleteInfo = new FormData(deleteProd) 
-     const newDelteData = Object.fromEntries(deleteInfo.entries())
+// const deleteProd = document.getElementById("product-form-delete")
+// deleteProd.addEventListener('submit', (event) => {
+//     event.preventDefault()
+//      const deleteInfo = new FormData(deleteProd) 
+//      const newDelteData = Object.fromEntries(deleteInfo.entries())
     
-    socketClient.emit("newDeleteData", newDeleteData)
-})
+//     socketClient.emit("newDeleteData", newDeleteData)
+// })
+
+socket.on('deleteProduct', async (id) => { 
+    await productManager.deleteProduct(id) //utilizamos el delete que armamos en el product manager
+    socket.emit('productos', products) //actualizamos la tabla
+
+  })
 
 const updateTable = (products) => {
     let bodyTable = document.getElementById('body-table')

@@ -57,14 +57,20 @@ socketServer.on('connection', async (socket) => {
             prod.stock,
             prod.category)
     })
+    const productFormDelete = document.getElementById('product-form-delete')
+    productFormDelete.addEventListener('submit', (event) => { //agregamos el event listener para cuando se haga clic en el boton
+    event.preventDefault()
+    let id = document.getElementById('id').value //agarramos el value (id del producto) del input del formulario
+    socket.emit('deleteProduct', id) //y lo mandamos al back
 
-    const prodToDelete = await productManager.getProducts()
-    socket.emit("prodToDelete", prodToDelete)
-    socket.on("deleteProduct", async (prod) => {
-        await productManager.deleteProduct(prod.id)
-    })
+})
 
-
+//hola
+    // const prodToDelete = await productManager.getProducts()
+    // socket.emit("prodToDelete", prodToDelete)
+    // socket.on("deleteProduct", async (prod) => {
+    //     await productManager.deleteProduct(prod.id)
+    // })
 
 })
 

@@ -33,20 +33,17 @@
 </section>
 
 {{!-- //Funcion delete --}}
-<section class="forms-section">
     <div>
-        <h2>Delete product:</h2>
+        <h2>Eliminar un producto</h2>
         <form id="product-form-delete">
-            
             <div>
-                <label for="description">Insert product ID:</label>
-                <textarea id="delete-id" name="description" rows="3" required></textarea>
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" required>
             </div>
-            
-            <button type="submit" class="btn btn-primary">Delete</button>
-        </form>
+        <button type="submit">Delete product</button>
+    </form>
+
     </div>
-</section>
 
     <table class="product-table">
     <thead>
