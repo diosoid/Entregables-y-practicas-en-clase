@@ -240,5 +240,15 @@
         "code": "9876543217877998",
         "stock": "55",
         "category": "electronica"
+    },
+    {
+        "id": "9c060bf0-d856-41e8-8c54-263c9d8f7a97",
+        "title": "auto",
+        "description": "rapido",
+        "price": "6000",
+        "status": true,
+        "code": "123456789",
+        "stock": "1000",
+        "category": "Premium"
     }
 ]
