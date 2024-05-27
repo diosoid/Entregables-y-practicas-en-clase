@@ -15,7 +15,7 @@ const productManager = new ProductManager("./src/data/products.json")
 const app = express();
 app.use(express.static(__dirname + '/public'))
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({extended: true}))
 app.engine('handlebars', handlebars.engine())
 app.set('views', __dirname + '/views')
 app.set('view engine', 'handlebars')
@@ -33,15 +33,15 @@ app.use(errorHandler)
 
 const PORT = 8080
 
-const httpServer = app.listen(PORT, () => console.log(`Server runing on port ${PORT}`))
+const httpServer = app.listen(PORT, () =>console.log(`Server runing on port ${PORT}`)  )
 
 const socketServer = new Server(httpServer)
 
 
-socketServer.on('connection', async (socket) => {
+socketServer.on('connection', async (socket)=>{
 
     console.log(`New client connected ${socket.id}`)
-    socket.on('disconnect', () => {
+    socket.on('disconnect', ()=>{
         console.log(`Client disconnected ${socket.id}`)
     })
 

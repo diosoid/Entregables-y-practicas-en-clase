@@ -1,4 +1,4 @@
-import { Router } from "express"
+import {Router} from "express"
 import fs from 'fs'
 import ProductManager from '../manager/productManager.js';
 

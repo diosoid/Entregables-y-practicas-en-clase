@@ -1,6 +1,6 @@
 const socketClient = io()
 
-socketClient.on('saludoDesdeBack', (message) => {
+socketClient.on('saludoDesdeBack', (message)=>{
     console.log(message)
     socketClient.emit('respuestadesdefront', 'muchas gracias')
 })
@@ -49,8 +49,13 @@ const updateTable = (products) => {
         bodyTable.appendChild(fila)
     });
 }
-socketClient.on('productsData', (products) => {
-    updateTable(products)
+
+socketClient.on('products', (arrayProducts) =>{
+    let infoProducts = ''
+    arrayProducts.map((prod) =>{
+        infoProducts += `${prod.name} - $${prod.price}</br>`
+    })
+    products.innerHTML = infoProducts
 })
 
 
