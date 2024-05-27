@@ -45,7 +45,7 @@ export default class ProductManager {
             await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4), 'utf8');
             return product;            
         } catch (error) {
-            throw new Error ("An unexpected error occurred while trying to add the product.")           
+            throw new Error (error)           
         }    
     }     
 

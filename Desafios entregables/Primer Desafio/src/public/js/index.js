@@ -15,6 +15,10 @@ form.addEventListener('submit', (event) => {
     socketClient.emit("newProductData", newProductData)
 })
 
+socketClient.on('productsData', (products) => {
+    updateTable(products)
+})
+
 // const deleteProd = document.getElementById("product-form-delete")
 // deleteProd.addEventListener('submit', (event) => {
 //     event.preventDefault()
@@ -30,7 +34,7 @@ const productFormDelete = document.getElementById('product-form-delete')
   let id = document.getElementById('id').value
   console.log(id)
    //agarramos el value (id del producto) del input del formulario
-  socket.emit('deleteProduct', id) //y lo mandamos al back
+  socketClient.emit('deleteProduct', id) //y lo mandamos al back
   })
 
 const updateTable = (products) => {
