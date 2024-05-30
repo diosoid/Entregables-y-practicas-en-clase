@@ -8,6 +8,8 @@ import router from './routes/view.router.js'
 import { Server } from 'socket.io'
 import ProductManager from './manager/productManager.js';
 
+import "./db/database.js"
+
 //Quizas sea una pregunta muy basica pero en esta linea estas asignando a la variable productManager una nueva instancia de la clase, hasta ahi lo entiendo pero porque le pasas la ruta del json con la data por parametros no entiendo esa parte.
 const productManager = new ProductManager("./src/data/products.json")
 

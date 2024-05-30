@@ -42,20 +42,19 @@ router.get ('/:id', async(req, res, next)=>{
     }
 })
 
-router.put('/:id', async (req, res) => {
+const actualizaProd = async (req, res) => {
     try {
         const { id } = req.params;
         const updatedProperties = req.body;
         const prodUpdate = await productManager.updateProduct(id, updatedProperties);
-
         if (!prodUpdate) {
-            return res.status(404).json({ msg: 'Error updating product' });
-        }
-        res.status(200).json(prodUpdate);
+            return res.status(404).json({ msg: 'Error updating product' })}
+            res.status(200).json(prodUpdate);
     } catch (error) {        
-        res.status(500).json({ msg: error.message });
-    }
-});
+            res.status(500).json({ msg: error.message });
+    }}
+
+router.put('/:id', actualizaProd);
 
 
 

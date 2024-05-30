@@ -1,11 +1,49 @@
-
 import fs from "fs"
 import {v4 as uuidv4} from 'uuid'
+import { model } from "mongoose"
 
-export default class ProductManager {   
+export default class ProductManager {  
+    //Metodos Mongoose  
+    // constructor (collection, schema) {
+    //     this.collection = model (collection, schema);        
+    // } 
+    // async getAll (){
+    //     try {
+    //         return await this.collection.find({})
+    //     } catch (error) {
+    //         throw new Error(error)
+    //     }}
+    // async getById (id){
+    //     try {
+    //         return await this.collection.findById(id)
+    //     } catch (error) {
+    //         throw new Error(error)
+    //     }}
+    // async create (obj){
+    //     try {
+    //         return await this.collection.create(obj)
+    //     } catch (error) {
+    //         throw new Error(error)
+    //     }}
+    // async update (id,obj){
+    //     try {
+    //         return await this.collection.findByIdAndUpdate(id, obj, {new: true})
+    //     } catch (error) {
+    //         throw new Error(error)
+    //     }}
+    // async delete (id){
+    //     try {
+    //         return await this.collection.findByIdAndDelete(id})
+    //     } catch (error) {
+    //         throw new Error(error)
+    //     }}
+
+
+
+
+    //Metodo original
     constructor (path) {
-        this.path = path;
-        
+        this.path = path;        
     } 
 
     async getProducts () {
