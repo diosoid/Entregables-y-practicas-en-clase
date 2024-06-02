@@ -7,8 +7,10 @@ import handlebars from 'express-handlebars'
 import router from './routes/view.router.js'
 import { Server } from 'socket.io'
 import ProductManager from './manager/productManager.js';
+import morgan from 'morgan'
 
 import "./db/database.js"
+import './daos/mongodb/connection.js'
 
 //Quizas sea una pregunta muy basica pero en esta linea estas asignando a la variable productManager una nueva instancia de la clase, hasta ahi lo entiendo pero porque le pasas la ruta del json con la data por parametros no entiendo esa parte.
 const productManager = new ProductManager("./src/data/products.json")
@@ -25,6 +27,7 @@ app.set('view engine', 'handlebars')
 app.use('/api/carts', cartRouter)
 app.use('/api/products', productRouter)
 app.use('/', router)
+app.use(morgan('dev'))
 
 //Poor ahora fuera de uso
 // app.get('/', (req, res) => {
