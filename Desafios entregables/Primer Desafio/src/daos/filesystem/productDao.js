@@ -1,8 +1,6 @@
 import fs from "fs"
 import {v4 as uuidv4} from 'uuid'
 
-
-
 export default class ProductManagerDaoFs {  
 
     //Metodo original
@@ -18,11 +16,8 @@ export default class ProductManagerDaoFs {
             } else return []           
         } catch (error) {
             throw new Error ("No product was found.")           
-        }
-        
-    }
+        }}
     
-
     async addProduct (title , description ,price ,thumbnails, code ,stock ) {
         try {
             const products = await this.getProducts()
@@ -48,9 +43,7 @@ export default class ProductManagerDaoFs {
             return product;            
         } catch (error) {
             throw new Error (error)           
-        }    
-    }     
-
+        } }     
     
     async getProductByid (id) {
 
@@ -60,10 +53,7 @@ export default class ProductManagerDaoFs {
         if (productExist) {
             return productExist;
         }
-        throw new Error ("Product not found")
-
-      
-       
+        throw new Error ("Product not found")      
     };
 
     async updateProduct(id, updatedProperties) {

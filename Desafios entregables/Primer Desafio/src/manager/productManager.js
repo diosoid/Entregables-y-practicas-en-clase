@@ -1,6 +1,6 @@
 import fs from "fs"
 import {v4 as uuidv4} from 'uuid'
-import { ProductsModel } from "../models/productModel.js";
+import { ProductsModel } from "../daos/mongodb/models/productModel.js";
 
 
 export default class ProductManager {  
