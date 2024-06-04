@@ -8,7 +8,7 @@ export default class ProductManagerDaoFs {
         this.path = path;        
     } 
 
-    async getProducts () {
+    async getAll () {
         try {
             if(fs.existsSync(this.path)){
                 const products = await fs.promises.readFile(this.path, 'utf8');
@@ -18,14 +18,14 @@ export default class ProductManagerDaoFs {
             throw new Error ("No product was found.")           
         }}
     
-    async addProduct (title , description ,price ,thumbnails, code ,stock ) {
+    async create (title , description ,price ,thumbnails, code ,stock ) {
         try {
-            const products = await this.getProducts()
+            const products = await this.getAll()
             const checkCode = await products.find((e) => e.code === code);
             if (checkCode) {
                 throw new Error ("Product" + title + "has already been added")
             }
-            if (!title || !description || !price || !code || !stock){            
+            if (!title || !description || !price || !code || !stock ){            
                 throw new Error ("Todos los campos son obligatorios")
             }
             const product = {
@@ -36,7 +36,8 @@ export default class ProductManagerDaoFs {
                 status: true,
                 thumbnails,
                 code,
-                stock
+                stock,
+                
             }
             products.push(product);                   
             await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4), 'utf8');
@@ -45,10 +46,10 @@ export default class ProductManagerDaoFs {
             throw new Error (error)           
         } }     
     
-    async getProductByid (id) {
+    async getByID (id) {
 
-        const products = await this.getProducts()
-        const productExist = products.find((e) => e.id === id)
+        const products = await this.getAll()
+        const productExist = products.find((e) => e.id === parseInt(id))
 
         if (productExist) {
             return productExist;
@@ -56,8 +57,8 @@ export default class ProductManagerDaoFs {
         throw new Error ("Product not found")      
     };
 
-    async updateProduct(id, updatedProperties) {
-        const products = await this.getProducts(); 
+    async update(id, updatedProperties) {
+        const products = await this.getAlls(); 
         const productToUpdateIndex = products.findIndex(product => product.id === id);
     
         if (productToUpdateIndex !== -1) {           
@@ -71,9 +72,9 @@ export default class ProductManagerDaoFs {
         }
     }   
     
-    async deleteProduct(id) {
+    async delete(id) {
         try {
-            let products = await this.getProducts();       
+            let products = await this.getAll();       
             const deleteProductIndex = products.findIndex(product => product.id === id);
             if (deleteProductIndex !== -1) {              
                 const deletedProduct = products.splice(deleteProductIndex, 1)[0];          

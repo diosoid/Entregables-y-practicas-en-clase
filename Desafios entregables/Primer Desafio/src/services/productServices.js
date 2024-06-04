@@ -1,6 +1,4 @@
-//import { id } from "schema/lib/objecttools";
 import ProductManagerDaoMongoDB from "../daos/mongodb/productDao.js"; 
-//import { response } from "express";
 const prodDao = new ProductManagerDaoMongoDB()
 
 // import { __dirname } from "../path.js";
