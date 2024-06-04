@@ -14,28 +14,28 @@ export const getAll = async () => {
         throw new Error(error)       
     }
 }
-export const getById = async () => {
+export const getById = async (id) => {
     try {
         return await prodDao.getById(id)         
     } catch (error) {
         throw new Error(error)       
     }
 }
-export const create = async () => {
+export const create = async (obj) => {
     try {
         return await prodDao.create(obj)       
     } catch (error) {
         throw new Error(error)       
     }
 }
-export const update = async () => {
+export const update = async (id, obj) => {
     try {
         return await prodDao.update(id, obj)       
     } catch (error) {
         throw new Error(error)       
     }
 }
-export const remove = async () => {
+export const remove = async (id) => {
     try {
         return await prodDao.delete(id)       
     } catch (error) {

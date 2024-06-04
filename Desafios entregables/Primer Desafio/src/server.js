@@ -10,8 +10,9 @@ import ProductManager from './manager/productManager.js';
 import morgan from 'morgan'
 import 'dotenv/config'
 
-// import "./db/database.js" //Conexion vieja
-import './daos/mongodb/connection.js'
+
+import { initMongoDb } from './daos/mongodb/connection.js'
+
 
 const productManager = new ProductManager("./src/data/products.json")
 
@@ -28,6 +29,7 @@ app.use('/api/carts', cartRouter)
 app.use('/api/products', productRouter)
 app.use('/', router)
 app.use(morgan('dev'))
+if (process.env.PERSISTENCE === 'MONGO') initMongoDb()
 
 
 

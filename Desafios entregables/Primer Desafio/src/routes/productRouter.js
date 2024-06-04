@@ -43,7 +43,7 @@ router.delete("/:id", remove)
 //         res.status(201).json(product);
         
 //     } catch (error) {
-//         res.status(500).json({ msg: error.message });
+//         res.status(500).json({ msg: error });
 //     }
 // });
 // router.get ('/:id', async(req, res, next)=>{
@@ -68,7 +68,7 @@ router.delete("/:id", remove)
 //             return res.status(404).json({ msg: 'Error updating product' })}
 //             res.status(200).json(prodUpdate);
 //     } catch (error) {        
-//             res.status(500).json({ msg: error.message });
+//             res.status(500).json({ msg: error });
 //     }}
 
 // router.put('/:id', actualizaProd);
@@ -84,7 +84,7 @@ router.delete("/:id", remove)
 //         }
 //         res.status(200).json({msg: `Product id: ${id} deleted successfully`})
 //     } catch (error) {
-//         res.status(500).json({msg: error.message})        
+//         res.status(500).json({msg: error})        
 //     }})
 
 

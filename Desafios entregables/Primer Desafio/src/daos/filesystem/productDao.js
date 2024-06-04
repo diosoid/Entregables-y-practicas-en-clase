@@ -83,7 +83,7 @@ export default class ProductManagerDaoFs {
                 throw new Error("Product not found");
             }
         } catch (error) {
-            throw new Error("Error deleting product: " + error.message);
+            throw new Error("Error deleting product: " + error);
         }
     }
     

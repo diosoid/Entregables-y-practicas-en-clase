@@ -7,7 +7,7 @@ export const getAllProducts = async (req, res, next) =>{
         const response = await service.getAll()
         res.json(response)       
     } catch (error) {
-        next (error.message)      
+        next (error)      
     }}
 export const getProductByid = async (req, res, next) =>{
     try {
@@ -16,7 +16,7 @@ export const getProductByid = async (req, res, next) =>{
         if(!product) res.status(404).json ({msg: 'product not found'})
         else res.json(product)       
     } catch (error) {
-        next (error.message)      
+        next (error)      
     }}
 export const createProduct = async (req, res, next) =>{
     try {
@@ -24,7 +24,7 @@ export const createProduct = async (req, res, next) =>{
         if(!newProd) res.status(404).json ({msg: 'Error creating product'})
         else res.json(newProd)      
     } catch (error) {
-        next (error.message)      
+        next (error)      
     }}
 export const updateProduct = async (req, res, next) =>{
     try {
@@ -33,7 +33,7 @@ export const updateProduct = async (req, res, next) =>{
         if(!prodUpd) res.status(405).json ({msg: 'Error updating product'})
         else res.json(prodUpd)
     } catch (error) {
-        next (error.message)      
+        next (error)      
     }}
 
     export const remove = async (req, res, next) =>{
@@ -43,5 +43,5 @@ export const updateProduct = async (req, res, next) =>{
             if(!prodDel) res.status(404).json ({msg: 'Error deleting product'})
             else res.json(prodDel)       
         } catch (error) {
-            next (error.message)      
+            next (error)      
         }}

@@ -12,7 +12,7 @@ router.get("/realtimeproducts", async (req, res) => {
         // const products = await productManager.getProducts()
         res.render('realTimeProducts')
     } catch (error) {
-        res.status(500).json({ msg: error.message })
+        res.status(500).json({ msg: error })
     }
 
 })
