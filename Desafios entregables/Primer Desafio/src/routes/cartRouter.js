@@ -24,15 +24,15 @@ router.post("/:idCart/products/:idProd", controller.addProdToCart)
 router.delete("/:idCart/products/:idProd", controller.removeProdFromCart)
 router.put("/:idCart/products/:idProd", controller.updateProdQuantityToCart)
 
-
-router.post("/", async (req,res, next)  => {
-    try {
-        const response = await cartManager.createCart()
-        res.json(response)        
-    } catch (error) {
-        next(error)
-    }
-})
+//Metodo viejo
+// router.post("/", async (req,res, next)  => {
+//     try {
+//         const response = await cartManager.createCart()
+//         res.json(response)        
+//     } catch (error) {
+//         next(error)
+//     }
+// })
 
 router.get("/:idCart", async (req,res, next) =>{
     try {

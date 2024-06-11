@@ -22,10 +22,9 @@ export const getById = async (req, res, next) => {
 
 export const create = async (req, res, next) => {
     try {
-        const response = await service.create()
-        if(!response) res.status(404).json({msg: "Cart Not Found"})
-            else res.status(200).json(response)
-        
+        const newCart = await service.create()
+        if(!newCart) res.status(404).json({msg: "Error creating cart."})
+            else res.status(200).json(newCart)       
     } catch (error) {
         next(error.message)
     }
