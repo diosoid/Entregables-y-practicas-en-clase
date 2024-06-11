@@ -37,6 +37,7 @@ import { CartsModel } from "./models/cartModel.js";
             if(!cart) return null;
             //busco si existe el prod en el cart
             const existProdInIndex = cart.products.findIndex(p => p.product.toString()  === prodId)
+
             if(existProdInIndex !== -1){               
                 cart.products[existProdInIndex].quantity = quantity
             } else cart.products.push({product: prodId, quantity})
@@ -47,20 +48,47 @@ import { CartsModel } from "./models/cartModel.js";
         }
     }
     async existProdInCart(cartId, prodId){
-       try {
-   
+       try { 
            return await CartsModel.findOne({
                _id: cartId,
-               products: {
-                   $elemMatch: {
-                       product: prodId
-                   }
-               }
+               products: {$elemMatch: {product: prodId}}
            })
-           
        } catch (error) {
-           throw new Error(error)
-           
+           throw new Error(error)         
        }
     }
+    async removeProdToCart(cartId, prodId){
+       try {
+        return await CartsModel.findOneAndUpdate(
+            {_id: cartId},
+            {$pull: {products: {product: prodId}}},
+            {new: true}
+        )       
+       } catch (error) {
+        throw new Error(error)   
+       }
+    }
+    async update(id, obj){
+       try {
+        const response = await CartsModel.findByIdAndUpdate(id, obj, {
+            new: true,
+        })  
+        return response    
+       } catch (error) {
+        console.log(error)
+       }
+    }
+    async updateProdQuantityToCart (cartId, prodId, quantity) {
+        try {
+            return await CartsModel.findByIdAndUpdate(
+                {_id: cartId, 'products.products':prodId},
+                {$set: {'products.$.quantity': quantity}},
+                {new: true}
+            )
+        } catch (error) {
+            console.log(error)          
+        }
+    }
+
+
  }
