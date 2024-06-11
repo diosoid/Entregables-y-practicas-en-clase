@@ -31,16 +31,16 @@ import { CartsModel } from "./models/cartModel.js";
             console.log(error)           
         }
     }
-    async addProdToCart (catrId, prodId, quantity){
+    async addProdToCart (cartId, prodId, quantity){
         try {
-            // const cart = await CartsModel.findById(catrId)
-            // if(!cart) return null;
+            const cart = await CartsModel.findById(cartId)
+            if(!cart) return null;
             //busco si existe el prod en el cart
             const existProdInIndex = cart.products.findIndex(p => p.product.toString()  === prodId)
             if(existProdInIndex !== -1){               
                 cart.products[existProdInIndex].quantity = quantity
-            } else cart.product.push({product: prodId, quantity})
-            return await cart.save()
+            } else cart.products.push({product: prodId, quantity})
+            await cart.save()
             return cart        
         } catch (error) {
             console.log(error)           
