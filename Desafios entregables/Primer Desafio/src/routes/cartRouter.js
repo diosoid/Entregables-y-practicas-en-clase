@@ -1,4 +1,6 @@
 import {Router} from "express"
+import * as controller from "../controllers/cartController.js"
+
 const router = Router()
 
 import CartManager from "../manager/cartManager.js";
@@ -16,6 +18,12 @@ router.post ("/:idCart/product/:idProd", async (req,res, next) =>{
         
     }
 })
+
+router.post("/", controller.create)
+router.post("/:idCart/products/:idProd", controller.addProdToCart)
+router.delete("/:idCart/products/:idProd", controller.removeProdFromCart)
+router.put("/:idCart/products/:idProd", controller.updateProdQuantityToCart)
+
 
 router.post("/", async (req,res, next)  => {
     try {
