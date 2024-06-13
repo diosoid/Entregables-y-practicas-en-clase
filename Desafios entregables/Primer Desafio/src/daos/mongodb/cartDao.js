@@ -89,6 +89,17 @@ import { CartsModel } from "./models/cartModel.js";
             console.log(error)          
         }
     }
+    async clearCart (cartId) {
+        try {
+            return await CartsModel.findByIdAndUpdate(
+                cartId, 
+                {$set: {products:[]}},
+                {new: true}
+            )
+        } catch (error) {
+            console.log(error)          
+        }
+    }
 
 
  }

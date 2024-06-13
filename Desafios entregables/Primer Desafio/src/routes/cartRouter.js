@@ -15,7 +15,7 @@ router.put("/id", controller.update)
 router.delete("/id", controller.remove)
 
 router.post("/:idCart/products/:idProd", controller.addProdToCart)
-router.delete("/:idCart/products/:idProd", controller.removeProdFromCart)
+router.delete("/:idCart/products/:idProd", controller.removeProdToCart)
 router.put("/:idCart/products/:idProd", controller.updateProdQuantityToCart)
 
 router.delete("/clear/:idCart", controller.clearCart)

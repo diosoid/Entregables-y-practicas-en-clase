@@ -68,16 +68,16 @@ export const addProdToCart = async (req, res, next) => {
     }
 }    
 
-export const removeProdFromCart = async (req, res, next) => {
+export const removeProdToCart = async (req, res, next) => {
         try {
             const { idCart } = req.params;
             const { idProd } = req.params;
-            const delProdToUserCart = await service.removeProdFromCart(
+            const delProdToUserCart = await service.removeProdToCart(
                 idCart,
                 idProd
             )
             if (!delProdToUserCart) res.json({msg: "Product Cart not exist"})
-                else res.json({msg: `Product ${idProd}deleted from cart`})
+                else res.json({msg: `Product ${idProd} deleted from cart`})
         } catch (error) {
             next(error.message)       
         }
