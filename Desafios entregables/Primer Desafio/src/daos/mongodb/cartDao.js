@@ -80,8 +80,8 @@ import { CartsModel } from "./models/cartModel.js";
     }
     async updateProdQuantityToCart (cartId, prodId, quantity) {
         try {
-            return await CartsModel.findByIdAndUpdate(
-                {_id: cartId, 'products.products':prodId},
+            return await CartsModel.findOneAndUpdate(
+                {_id: cartId, 'products.product':prodId},
                 {$set: {'products.$.quantity': quantity}},
                 {new: true}
             )

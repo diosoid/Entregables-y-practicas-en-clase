@@ -2,7 +2,6 @@ import {Router} from "express"
 import fs from 'fs'
 import ProductManager from '../manager/productManager.js';
 
-//esta linea no estoy seguro de porque la importaste porque hasta lo que entiendo no se usa esa constante
 const productManager = new ProductManager('./src/data/products.json');
 const router = Router()
 
@@ -24,6 +23,19 @@ router.get("/listadeproductos", async (req, res) => {
     } catch (error) {
         res.status(500).send(error)
     }
+})
+
+router.get("/login", (req, res)=> {
+    res.render("login")
+})
+
+router.get("/register", (req, res)=> {
+    res.render("register")
+})
+
+router.get("/profile", (req, res) => {
+    console.log(req.session)
+    res.render("profile")
 })
 
 export default router
