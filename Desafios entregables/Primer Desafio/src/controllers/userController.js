@@ -11,7 +11,7 @@ export const login = async (req, res) => {
         else {
             req.session.email = email;
             req.session.password = password;
-            res.redirect("/views/profile")
+            res.redirect("/profile")
         }
     } catch (error) {
         throw new Error(error)        
@@ -31,7 +31,7 @@ export const register = async (req, res) => {
         else res.redirect("/login")
     }
     const user = await userDao.register(req.body);
-    if(!user) res.status(401).json({ msg: "No estas autorizado Err 2"})
+    if(!user) res.status(401).json({ msg: "User exist"})
         else res.redirect("/login")
     } catch (error) {
         throw new Error(error)

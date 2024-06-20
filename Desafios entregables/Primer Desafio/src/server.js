@@ -77,7 +77,7 @@ socketServer.on('connection', async (socket)=>{
     })
 
     
-    const productsData = await productManager.getProducts()
+    const productsData = await productManager.getAll()// cambie el getproducts por el getall 
     socket.emit("productsData", productsData)
     socket.on("newProductData", async (prod) => {
         await productManager.addProduct(prod.title,
